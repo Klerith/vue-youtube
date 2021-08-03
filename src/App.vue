@@ -1,15 +1,32 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>{{ counter }}</h1>
+  <button @click="increment">+1</button>
+  <button @click="decrement">-1</button>
+  <button @click="incrementBy(5)">+5</button>
+
+  <h1>{{ counter2 }}</h1>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import useCounter from './composables/useCounter'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+
+    const { counter, increment, incrementBy, decrement } = useCounter(15)
+    const { counter:counter2 } = useCounter(20)
+
+    return {
+      counter,
+      counter2,
+
+      increment,
+      incrementBy,
+      decrement
+    }
+
   }
 }
 </script>
